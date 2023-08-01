@@ -6,6 +6,34 @@
   <title>Tourist Attractions</title>
   <!-- Bootstrap CSS link (make sure to replace 'path/to/bootstrap.css' with the actual path) -->
   <link rel="stylesheet" href="path/to/bootstrap.css">
+  <style>
+	button {
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #fff;
+  -webkit-clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  height: 40px;
+  font-size: 0.7rem;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  transition: .2s .1s;
+  background-image: linear-gradient(90deg,#1c1c1c,#6220fb);
+  border: 0 solid;
+  overflow: hidden;
+}
+
+button:hover {
+  cursor: pointer;
+  transition: all .3s ease-in;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+  </style>
 </head>
 <body class="bg-light">
   <div class="container mt-5">
@@ -31,20 +59,41 @@
   </div>
 
   <!-- Bootstrap JavaScript link (make sure to replace 'path/to/bootstrap.js' with the actual path) -->
-  <script src="path/to/bootstrap.js"></script>
-  <!-- Your custom JavaScript code -->
-  <script>
-    function buttonClicked(num) {
-      if (num === 10) {
-        // Stop button clicked
-        // You can perform any required action here
-        alert("STOP button clicked!");
-      } else {
-        // Other buttons clicked
-        // You can perform any required action here
-        alert("Button " + num + " clicked!");
-      }
+  <script type="module">
+    import { loadPyodide } from 'https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js';
+
+    async function loadPyodideAndRun() {
+      // Load Pyodide and other packages
+      const pyodide = await loadPyodide({
+        indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.18.1/full/'
+      });
+
+      // Run Python code using Pyodide
+      pyodide.runPython(`
+	#!/usr/bin/env python2
+
+	import Tkinter as tk
+	import numpy as np
+	import rospy
+	from std_msgs.msg import Bool
+	from std_msgs.msg import Int8
+
+	pub=rospy.Publisher('/button', Int8, queue_size=1)
+	stop_pub=rospy.Publisher('/stopButton', Int8, queue_size=1)
+
+	rospy.init_node('simple_gui', anonymous=True)
+
+	def button_clicked(num):
+
+	    if num == 10:
+		stop_pub.publish(num)
+	    else:
+		pub.publish(num)
+      `);
     }
+
+    // Load Pyodide and run the Python code when the page is ready
+    loadPyodideAndRun();
   </script>
 </body>
 </html>
