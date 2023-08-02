@@ -65,12 +65,13 @@ button:hover {
 	});
 
 	function buttonClicked(num){
+	    let construct = {
+		data: num
+	    }
 	    if(num == 10){
-		stopButton.publish(num, {queue_size: 1});
-		alert("stop issued");
+		stopButton.publish(construct, {queue_size: 1});
 	    }else{
-		goButton.publish(num, {queue_size: 1});
-		alert("order issued");
+		goButton.publish(construct, {queue_size: 1});
 		} 
 	}
   </script>
