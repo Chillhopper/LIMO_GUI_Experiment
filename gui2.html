@@ -7,7 +7,13 @@
   <!-- Bootstrap CSS link (make sure to replace 'path/to/bootstrap.css' with the actual path) -->
   <link rel="stylesheet" href="path/to/bootstrap.css">
   <style>
-	button {
+
+body{
+  background-color: #222222;
+}
+
+
+.epicbutton {
   border-radius: .25rem;
   text-transform: uppercase;
   font-style: normal;
@@ -22,9 +28,33 @@
   line-height: 14px;
   letter-spacing: 1.2px;
   transition: .2s .1s;
-  background-image: linear-gradient(90deg,#1c1c1c,#6220fb);
+  background-image: linear-gradient(90deg,#1c1c1c,#DC143C);
   border: 0 solid;
   overflow: hidden;
+  width: 100px;
+  margin: 2px;
+}
+
+.stop {
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 25px;
+  padding-right: 25px;
+  color: #fff;
+  -webkit-clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  clip-path: polygon(0 0,0 0,100% 0,100% 0,100% calc(100% - 15px),calc(100% - 15px) 100%,15px 100%,0 100%);
+  height: 40px;
+  font-size: 0.7rem;
+  line-height: 14px;
+  letter-spacing: 1.2px;
+  transition: .2s .1s;
+  background-image: linear-gradient(90deg,#1c1c1c, #2b11d4);
+  border: 0 solid;
+  overflow: hidden;
+  width: 100px;
+  margin: 2px;
 }
 
 button:hover {
@@ -33,6 +63,38 @@ button:hover {
   padding-right: 30px;
   padding-left: 30px;
 }
+
+.container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 210px;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.column{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.col{
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.colstop {
+  align-self: center;
+}
+
   </style>
 
   <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
@@ -78,29 +140,41 @@ button:hover {
 
 </head>
 <body class="bg-light">
-  <div class="container mt-5">
-    <h1 class="mb-4">Team 3 Limo Navigation</h1>
-    <div class="row">
-      <div class="col-md-3">
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(0)">Origin</button>
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(1)">Sentosa</button>
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(2)">WOT</button>
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(3)">USS</button>
+  <div class="container">
+    
+      <div class="col">
+
+        <button type="button" class="epicbutton"  onclick="buttonClicked(5)">Siloso</button>
+        <button type="button" class="epicbutton"  onclick="buttonClicked(6)">Merlion</button>
+        <button type="button" class="epicbutton"  onclick="buttonClicked(8)">iFly</button>
+
+        
+        
+        
       </div>
-      <div class="col-md-3">
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(4)">SEA</button>
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(5)">Siloso</button>
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(6)">Merlion</button>
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(7)">Reef</button>
+      <div class="col">
+        
+        <button type="button" class="epicbutton"  onclick="buttonClicked(7)">Reef</button>
+        <button type="button" class="epicbutton"  onclick="buttonClicked(0)">Origin</button>
+        <button type="button" class="epicbutton"  onclick="buttonClicked(3)">USS</button>
+
+        
+
       </div>
-      <div class="col-md-3">
-        <button type="button" class="btn btn-primary btn-block mb-3" onclick="buttonClicked(8)">iFly</button>
-        <button type="button" class="btn btn-danger btn-block mb-3" onclick="buttonClicked(10)">STOP</button>
+      <div class="col">
+
+        <button type="button" class="epicbutton"  onclick="buttonClicked(4)">SEA</button>
+        <button type="button" class="epicbutton"  onclick="buttonClicked(1)">Sentosa</button>
+        <button type="button" class="epicbutton"  onclick="buttonClicked(2)">WOT</button>
+
       </div>
-    </div>
+      <div class="colstop">
+      
+      <button type="button" class="stop"  onclick="buttonClicked(10)">STOP</button>
+
+      </div>
+       
+    
   </div>
-
-  <!-- Bootstrap JavaScript link (make sure to replace 'path/to/bootstrap.js' with the actual path) -->
-
 </body>
 </html>
